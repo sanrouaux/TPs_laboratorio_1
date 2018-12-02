@@ -207,3 +207,49 @@ int employee_getSueldo(Employee* this,int* sueldo)
     }
     return retorno;
 }
+
+
+/** \brief Recibe dos elementos de la lista, los compara segun el campo "nombre" y devuelve el resultado de la comparación
+ *
+ * \param punteroUno void* Primer elemento a comparar de la lista
+ * \param punteroDos void* Segundo elemento a comparar de la lista
+ * \return int "-1" si el primer elemento es alfabéticamente anterior, "0" si son iguales, y "1" si el primer elemento
+ * es alfabéticamente posterior al segundo
+ *
+ */
+int employee_comparaEmployees(void* punteroUno, void* punteroDos)
+{
+    int retorno = 0;
+
+    Employee* pEmployeeUno;
+    Employee* pEmployeeDos;
+
+    pEmployeeUno = (Employee*) punteroUno;
+    pEmployeeDos = (Employee*) punteroDos;
+
+    if(stricmp(pEmployeeUno->nombre, pEmployeeDos->nombre)<0)
+    {
+        retorno = -1;
+    }
+    else if(stricmp(pEmployeeUno->nombre, pEmployeeDos->nombre)>0)
+    {
+        retorno = 1;
+    }
+    return retorno;
+}
+
+
+
+int employee_filtraSueldoMayor40000(void* this)
+{
+    int auxReturn = 0;
+    if(this != NULL)
+    {
+        Employee* pEmpleado = (Employee*) this;
+        if(pEmpleado->sueldo > 40000)
+        {
+            auxReturn = 1;
+        }
+    }
+    return auxReturn;
+}

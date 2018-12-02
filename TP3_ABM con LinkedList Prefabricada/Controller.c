@@ -7,54 +7,10 @@
 #include "Controller.h"
 #include "ingresoDatos.h"
 #include "validaciones.h"
+#include "Menu.h"
 
-
-/** \brief Desplega el menú de opciones y pide al usuario una opción
- *
- * \return int Opción seleccionada por el usuario
- *
- */
-int menuDeOpciones()
-{
-    int option;
-
-    printf("-------------------MENU DE OPCIONES--------------------------\n");
-    printf("1. Cargar los datos de los empleados desde el archivo data.csv (modo texto).\n");
-    printf("2. Cargar los datos de los empleados desde el archivo data.bin (modo binario).\n");
-    printf("3. Alta de empleado\n");
-    printf("4. Modificar datos de empleado\n");
-    printf("5. Baja de empleado\n");
-    printf("6. Listar empleados\n");
-    printf("7. Ordenar empleados\n");
-    printf("8. Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
-    printf("9. Guardar los datos de los empleados en el archivo data.bin (modo binario).\n");
-    printf("10. Salir\n");
-    printf("Introduzca una opcion: ");
-    fflush(stdin);
-    scanf("%d", &option);
-
-    return option;
-}
-
-
-/** \brief Despliega el menú de opciones de datos del empleado a modificar y pide una opción al usuario
- *
- * \return char Caracter seleccionado por el usuario
- *
- */
-char menuModificacionEmpleado()
-{
-    char option;
-
-    puts("Que dato desea cambiar?");
-    puts("a. Nombre");
-    puts("b. Horas trabajadas");
-    puts("c. Sueldo");
-    puts("d. Cancelar");
-    option = ingresaCaracter("Ingrese una opcion: ");
-
-    return option;
-}
+//Prototipo de funcion static
+static int controller_calculaNuevoId(LinkedList* pArrayListEmployee);
 
 
 /** \brief Carga datos de empleados desde el archivo data.csv (modo texto).
@@ -385,7 +341,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
 
             puts("Ordenando. . .");
 
-            ll_sort(auxPLinkedList, controller_comparaEmployees, 1);
+            ll_sort(auxPLinkedList, employee_comparaEmployees, 1);
             controller_ListEmployee(auxPLinkedList);
         }
         else
@@ -396,6 +352,22 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
     }
     return retorno;
 }
+
+
+int controller_filterEmployeesSalaryHigher40000(LinkedList* pArrayListEmployees)
+{
+    int retorno = -1;
+    if(pArrayListEmployees != NULL)
+    {
+        LinkedList* listaFiltrada;
+        listaFiltrada = ll_filter(pArrayListEmployees, employee_filtraSueldoMayor40000);
+        controller_ListEmployee(listaFiltrada);
+        retorno = 1;
+    }
+    return retorno;
+}
+
+
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).
  *
@@ -515,7 +487,7 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
  * \return int El nuevo ID para el empleo a cargar
  *
  */
-int controller_calculaNuevoId(LinkedList* pArrayListEmployee)
+static int controller_calculaNuevoId(LinkedList* pArrayListEmployee)
 {
     int idMayor = 0;
     int bandera = 0;
@@ -539,34 +511,4 @@ int controller_calculaNuevoId(LinkedList* pArrayListEmployee)
         }
     }
     return idMayor+1;
-}
-
-
-/** \brief Recibe dos elementos de la lista, los compara segun el campo "nombre" y devuelve el resultado de la comparación
- *
- * \param punteroUno void* Primer elemento a comparar de la lista
- * \param punteroDos void* Segundo elemento a comparar de la lista
- * \return int "-1" si el primer elemento es alfabéticamente anterior, "0" si son iguales, y "1" si el primer elemento
- * es alfabéticamente posterior al segundo
- *
- */
-int controller_comparaEmployees(void* punteroUno, void* punteroDos)
-{
-    int retorno = 0;
-
-    Employee* pEmployeeUno;
-    Employee* pEmployeeDos;
-
-    pEmployeeUno = (Employee*) punteroUno;
-    pEmployeeDos = (Employee*) punteroDos;
-
-    if(stricmp(pEmployeeUno->nombre, pEmployeeDos->nombre)<0)
-    {
-        retorno = -1;
-    }
-    else if(stricmp(pEmployeeUno->nombre, pEmployeeDos->nombre)>0)
-    {
-        retorno = 1;
-    }
-    return retorno;
 }
