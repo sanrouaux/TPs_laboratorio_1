@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1538610028 source:c:\users\sanro\onedrive\escritorio\tp 2\nominaempleados\menu.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arrayEmployees.h"
+	"menu.h"
+
+1538593264 c:\users\sanro\onedrive\escritorio\tp 2\nominaempleados\menu.h
+
+1538619230 source:c:\users\sanro\onedrive\escritorio\tp 2\nominaempleados\arrayemployees.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arrayEmployees.h"
+
+1538609216 c:\users\sanro\onedrive\escritorio\tp 2\nominaempleados\arrayemployees.h
+
+1538620617 source:c:\users\sanro\onedrive\escritorio\tp 2\nominaempleados\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arrayEmployees.h"
+	"menu.h"
+	"ingresoDatos.h"
+
+1538621045 c:\users\sanro\onedrive\escritorio\tp 2\nominaempleados\ingresodatos.h
+
+1538620370 source:c:\users\sanro\onedrive\escritorio\tp 2\nominaempleados\ingresodatos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"arrayEmployees.h"
+	"menu.h"
+

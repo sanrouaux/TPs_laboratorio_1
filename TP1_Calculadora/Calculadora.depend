@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1535556310 source:c:\users\sanro\onedrive\escritorio\clase-del-28-8-18\tp calculadora\funciones.c
+
+1536259213 source:c:\users\sanro\onedrive\escritorio\clase-del-28-8-18\tp calculadora\main.c
+	<stdio.h>
+	<stdlib.h>
+	"miLibreria.h"
+
+1536258837 c:\users\sanro\onedrive\escritorio\clase-del-28-8-18\tp calculadora\milibreria.h
+
+1536258837 source:c:\users\sanro\onedrive\escritorio\clase-del-28-8-18\tp calculadora\milibreria.c
+	<stdio.h>
+	<stdlib.h>
+	"miLibreria.h"
+
